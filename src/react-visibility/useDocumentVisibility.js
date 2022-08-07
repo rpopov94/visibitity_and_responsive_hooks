@@ -7,7 +7,7 @@ function getDocumentVisibility() {
     return !document.hidden;
 }
 
-const useDocumentVisibility = () => {
+export const useDocumentVisibility = () => {
     const [visible, setIsVisible] = useState(getDocumentVisibility());
     const [count, setcount] = useState(0);
     const callbacks = useRef([]);
@@ -36,7 +36,10 @@ const useDocumentVisibility = () => {
         };
     }, []);
 
-    return { count,  visible, onVisibilityChange};
+    return {
+        count,
+        visible,
+        onVisibilityChange
+    };
 };
 
-export default useDocumentVisibility;

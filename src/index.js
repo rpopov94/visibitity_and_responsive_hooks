@@ -1,1 +1,1 @@
-export * from './react-visibility/useDocumentVisibility';
+export * as useDocumentVisibility from './react-visibility/useDocumentVisibility';
