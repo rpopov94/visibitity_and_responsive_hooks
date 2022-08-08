@@ -43,4 +43,3 @@ const useDocumentVisibility = () => {
 };
 
 export default useDocumentVisibility;
-
