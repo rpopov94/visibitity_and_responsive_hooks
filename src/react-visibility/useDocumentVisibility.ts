@@ -9,12 +9,12 @@ function getDocumentVisibility() {
 
 export const useDocumentVisibility = () => {
     const [visible, setIsVisible] = useState(getDocumentVisibility());
-    const [count, setcount] = useState(0);
+    const [camel, setCamel] = useState(0);
     const callbacks = useRef([]);
 
     const onVisibilityChangeAll = () => {
         if(getDocumentVisibility() === false){
-            setcount(count => count + 1);
+            setCamel(count => count + 1);
         }
         setIsVisible(getDocumentVisibility());
         callbacks.current.forEach(element => {
@@ -23,21 +23,20 @@ export const useDocumentVisibility = () => {
     };
 
     const onVisibilityChange = (callback) => {
-        const event = (() => callback(getDocumentVisibility()));
-        callbacks.current.push(() => event());
+        callbacks.current.push(
+            () => callback(getDocumentVisibility())
+        )
     };
 
     useEffect(() => {
-        document.addEventListener('visibilitychange', onVisibilityChangeAll, false);
-        const cleanCallbacks = callbacks.current;
+        document.addEventListener('visibilitychange', onVisibilityChangeAll);
         return () => {
             document.removeEventListener('visibilitychange', onVisibilityChangeAll);
-            cleanCallbacks.length = 0;
         };
     }, []);
 
     return {
-        count,
+        count: camel,
         visible,
         onVisibilityChange
     };
