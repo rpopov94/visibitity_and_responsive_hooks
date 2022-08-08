@@ -9,12 +9,12 @@ function getDocumentVisibility() {
 
 export const useDocumentVisibility = () => {
     const [visible, setIsVisible] = useState(getDocumentVisibility());
-    const [camel, setCamel] = useState(0);
+    const [count, setCount ] = useState(0);
     const callbacks = useRef([]);
 
     const onVisibilityChangeAll = () => {
         if(getDocumentVisibility() === false){
-            setCamel(count => count + 1);
+            setCount(count => count + 1);
         }
         setIsVisible(getDocumentVisibility());
         callbacks.current.forEach(element => {
@@ -36,7 +36,7 @@ export const useDocumentVisibility = () => {
     }, []);
 
     return {
-        count: camel,
+        count,
         visible,
         onVisibilityChange
     };
