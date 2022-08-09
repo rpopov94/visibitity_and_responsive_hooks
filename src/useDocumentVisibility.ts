@@ -10,25 +10,20 @@ function getDocumentVisibility() {
 const useDocumentVisibility = () => {
     const [visible, setIsVisible] = useState(getDocumentVisibility());
     const [count, setCount ] = useState(0);
-    const callbacks = useRef([]);
+    const callbacks = useRef<((isVisible: boolean) => void)[]>([]);
 
-    const onVisibilityChangeAll = () => {
-        if(getDocumentVisibility() === false){
-            setCount(count => count + 1);
-        }
-        setIsVisible(getDocumentVisibility());
-        callbacks.current.forEach(element => {
-            element();
-        });
-    };
-
-    const onVisibilityChange = (callback) => {
-        callbacks.current.push(
-            () => callback(getDocumentVisibility())
-        )
+    const onVisibilityChange = (callback: (isVisible: boolean) => void) => {
+        callbacks.current.push(callback)
     };
 
     useEffect(() => {
+        const onVisibilityChangeAll = () => {
+            setIsVisible(getDocumentVisibility());
+            if(!getDocumentVisibility()){
+                setCount(count => count + 1);
+            }
+            callbacks.current.forEach(func => func(!getDocumentVisibility()));
+        };
         document.addEventListener('visibilitychange', onVisibilityChangeAll);
         return () => {
             document.removeEventListener('visibilitychange', onVisibilityChangeAll);
@@ -41,5 +36,6 @@ const useDocumentVisibility = () => {
         onVisibilityChange
     };
 };
+
 
 export default useDocumentVisibility;
