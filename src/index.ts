@@ -1,1 +1,1 @@
-export { useDocumentVisibility } from './useDocumentVisibility';
+export * from "./react-vis";
