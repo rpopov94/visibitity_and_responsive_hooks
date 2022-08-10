@@ -21,9 +21,8 @@
     "react": ">=16.8.0"
   },
   "scripts": {
-    "build": "microbundle --no-compress --jsx React.createElement --jsxImportSource react --globals react/jsx-runtime=jsx",
-    //    "clean": "shx rm -rf dist",
-    //    "build": "npm run clean && tsc && shx cp ./dist"
+    "clean": "shx rm -rf dist",
+    "build": "npm run clean && tsc && shx cp ./dist"
   },
   "repository": {
     "type": "git",
