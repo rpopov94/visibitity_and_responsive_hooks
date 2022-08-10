@@ -1,1 +1,1 @@
-export * from "./react-vis";
+export * from './react-vis';
