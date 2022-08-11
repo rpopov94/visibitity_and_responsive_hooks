@@ -1,1 +1,1 @@
-export * from './react-vis';
+export { default as useDocumentVisibility } from './useDocumentVisibility';

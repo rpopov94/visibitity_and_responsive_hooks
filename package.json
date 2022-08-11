@@ -13,12 +13,10 @@
   "scripts": {
     "build": "microbundle -c"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.30.6",
     "@typescript-eslint/parser": "^5.30.6",
